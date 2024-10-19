@@ -10,6 +10,9 @@ COPY package*.json ./
 RUN npm install
 
 RUN npm install -g typescript
+
+RUN npm i --save-dev @types/node \
+
 # Install ts-node globally
 RUN npm install -g ts-node
 # Copy the rest of the application code
