@@ -25,7 +25,8 @@ Every country have its own cycle period setting in case there would be a need to
 - If it does it updates the cycle number and question for the country.
 - If question cycle is finished it will update the cycle number to 1 and update the question for the country.
 - The cycle starting date for every country is 2021-14-10 which is Monday.
-- 
+- When users make request with their country api will return the question in the cycle period
+
 ## What can be done further
 
 - We can cache the question by redis or another service instead of putting it into object. I did it this way to save time.
