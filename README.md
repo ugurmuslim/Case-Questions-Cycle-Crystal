@@ -15,6 +15,7 @@ This project is a simple Node.js application that connects to a PostgreSQL datab
 ## What I understood from the case
 
 - Every country will have its own cycle and questions. 
+- First I thought every country has the same question pool but then I leaned into the idea that every country has their unique problems and cultures so at some point they will have their own questions.
 
 ## What I did for the case
 
