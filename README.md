@@ -1,71 +1,71 @@
-# Typescript ORM with Postgres example
-Sequelize ORM using Typescript with Postgres database - CRUD operations example with Express REST API.
+# Node.js PostgreSQL Docker Project
 
-For more detail, please visit:
-> [TypeScript ORM with Postgres example](https://www.bezkoder.com/typescript-orm-postgres/)
+## Description
+This project is a simple Node.js application that connects to a PostgreSQL database. It serves an API for retrieving questions based on the specified country. The application is built with TypeScript and uses Docker for easy setup and deployment.
 
-> [Express Typescript example](https://www.bezkoder.com/express-typescript-example/)
+## Technologies Used
+- Node.js
+- Express
+- PostgreSQL
+- TypeScript
+- Docker
+- Docker Compose
 
-> [TypeScript ORM with MySQL example](https://www.bezkoder.com/typescript-orm-mysql/)
 
-## Project setup
+## What I understood from the case
+
+- Every country will have its own cycle and questions. 
+
+## What I did for the case
+
+Every country have its own cycle period setting in case there would be a need to change the cycle period for a country.
+
+- A cron job runs every day and checks if cycle period has expired for the question.
+- If it does it updates the cycle number and question for the country.
+- If question cycle is finished it will update the cycle number to 1 and update the question for the country.
+
+## What can be done further
+
+- We can cache the question by redis or another service instead of putting it into object. I did it this way to save time.
+- We can put validations for routers and services.
+- We can put tests for the application.
+- When we deploy it to host services like AWS the app can run in multiple instances. 
+- Most probably translations will come into play for the questions. We can add a translation table and get the question based on the language.
+
+## Getting Started
+
+- [Docker](https://docs.docker.com/get-docker/) installed on your machine.
+- [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine.
+
+
+## RUNNING THE APPLICATION
+
+`
+docker-compose up --build`
+`
+
+Run below command on root directory to seed the database with some data. 
+`
+./seedDatabase.sh
+`
+
+## API Endpoints
+
+Example Countries = ['US', 'UK', 'Australia', 'Canada','Singapore']
+
+`
+GET /api/questions?country=country_name
+`
+
 ```
-npm install
+{
+	"question": {
+		"id": 24,
+		"question": "Vaco apparatus aggredior explicabo itaque deludo conspergo accommodo quaerat aliqua.",
+		"country": "US",
+		"cycle_number": 24,
+		"createdAt": "2024-10-19T15:16:20.385Z",
+		"updatedAt": "2024-10-19T15:16:20.385Z"
+	}
+}
 ```
-
-### Run
-```
-npm run start
-```
-
-Front-end that works well with this Back-end
-> [Axios Client](https://www.bezkoder.com/axios-request/)
-
-> [Angular 8](https://www.bezkoder.com/angular-crud-app/) / [Angular 10](https://www.bezkoder.com/angular-10-crud-app/) / [Angular 11](https://www.bezkoder.com/angular-11-crud-app/) / [Angular 12](https://www.bezkoder.com/angular-12-crud-app/) / [Angular 13](https://www.bezkoder.com/angular-13-crud-example/) / [Angular 14](https://www.bezkoder.com/angular-14-crud-example/) / [Angular 15](https://www.bezkoder.com/angular-15-crud-example/) / [Angular 16 Client](https://www.bezkoder.com/angular-16-crud-example/)
-
-> [Vue 2 Client](https://www.bezkoder.com/vue-typescript-crud/) / [Vue 3 Client](https://www.bezkoder.com/vue-3-typescript-axios/)
-
-> [React Client](https://www.bezkoder.com/react-typescript-api-call/)
-
-## More Practice
-> [Node.js Express Pagination with PostgreSQL example](https://bezkoder.com/node-js-pagination-postgresql/)
-
-> [Node.js Express File Upload Rest API example](https://bezkoder.com/node-js-express-file-upload/)
-
-> [Node.js Express File Upload with Google Cloud Storage example](https://bezkoder.com/google-cloud-storage-nodejs-upload-file/)
-
-Security:
-> [Node.js JWT Authentication & Authorization with PostgreSQL example](https://bezkoder.com/node-js-jwt-authentication-postgresql/)
-
-Associations:
-> [Sequelize Associations: One-to-Many Relationship example](https://bezkoder.com/sequelize-associate-one-to-many/)
-
-> [Sequelize Associations: Many-to-Many Relationship example](https://bezkoder.com/sequelize-associate-many-to-many/)
-
-Fullstack:
-> [Vue + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/vue-node-express-postgresql/)
-
-> [React + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/react-node-express-postgresql/)
-
-> [Angular 8 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-node-express-postgresql/)
-
-> [Angular 10 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-10-node-express-postgresql/)
-
-> [Angular 11 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-11-node-js-express-postgresql/)
-
-> [Angular 12 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-12-node-js-express-postgresql/)
-
-> [Angular 13 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-13-node-js-express-postgresql/)
-
-> [Angular 14 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-14-node-js-express-postgresql/)
-
-> [Angular 15 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-15-node-js-express-postgresql/)
-
-> [Angular 16 + Node.js + Express + PostgreSQL example](https://www.bezkoder.com/angular-16-node-js-express-postgresql/)
-
-Integration (run back-end & front-end on same server/port)
-> [Integrate React with Node.js Restful Services](https://bezkoder.com/integrate-react-express-same-server-port/)
-
-> [Integrate Angular with Node.js Restful Services](https://bezkoder.com/integrate-angular-10-node-js/)
-
-> [Integrate Vue with Node.js Restful Services](https://bezkoder.com/serve-vue-app-express/)

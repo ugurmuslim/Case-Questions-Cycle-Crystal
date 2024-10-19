@@ -3,10 +3,10 @@ import Server from "./src/index";
 
 const app: Application = express();
 const server: Server = new Server(app);
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 app
-  .listen(PORT, "localhost", function () {
+  .listen(PORT, "0.0.0.0", function () {
     console.log(`Server is running on port ${PORT}.`);
   })
   .on("error", (err: any) => {

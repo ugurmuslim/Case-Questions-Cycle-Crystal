@@ -1,5 +1,5 @@
 {
-  "name": "typescript-orm-postgres",
+  "name": "stroll",
   "version": "1.0.0",
   "description": "Rest API using Node.js, TypeScript ORM Sequelize, Express, Postgres",
   "main": "server.ts",
@@ -22,18 +22,23 @@
     "api",
     "crud"
   ],
-  "author": "bezkoder",
-  "license": "ISC",
+  "author": "ugur muslim",
+  "license": "",
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/faker": "^6.6.9",
     "@types/node": "^20.4.2",
+    "@types/node-cron": "^3.0.11",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "faker": "^6.6.6",
+    "node-cron": "^3.0.3",
     "pg": "^8.11.1",
     "sequelize": "^6.32.1",
     "sequelize-typescript": "^2.1.5"

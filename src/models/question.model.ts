@@ -1,9 +1,9 @@
 import { Model, Table, Column, DataType } from "sequelize-typescript";
 
 @Table({
-  tableName: "tutorials",
+  tableName: "questions",
 })
-export default class Tutorial extends Model {
+export default class Question extends Model {
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
@@ -14,19 +14,22 @@ export default class Tutorial extends Model {
 
   @Column({
     type: DataType.STRING(255),
-    field: "title"
+    field: "question",
+    allowNull: false
   })
-  title?: string;
+  question!: string;
 
   @Column({
     type: DataType.STRING(255),
-    field: "description"
+    field: "country",
+    allowNull: false
   })
-  description?: string;
+  country?: string;
 
   @Column({
-    type: DataType.BOOLEAN,
-    field: "published"
+    type: DataType.INTEGER,
+    field: "cycle_number",
+    allowNull: false
   })
-  published?: boolean;
+  cycle_number?: number;
 }
