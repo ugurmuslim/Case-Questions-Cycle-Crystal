@@ -4,7 +4,7 @@ import Question from "../models/question.model";
 export interface IQuestionRepository {
   retrieveAll(searchParams: {title: string, published: boolean}): Promise<Question[]>;
   retrieveById(questionId: number): Promise<Question | null>;
-  retrieveByCycleNumber(cycleNumber: number): Promise<Question | null>;
+  retrieveByCycleNumber(country: string, cycleNumber: number): Promise<Question | null>;
   updateByCycleNumber(cycleNumber: number, updateData: Partial<Question>): Promise<Question | null>;
 }
 
@@ -35,12 +35,13 @@ class QuestionRepository implements IQuestionRepository {
     }
   }
 
-  async retrieveByCycleNumber(cycleNumber: number): Promise<Question | null> {
+  async retrieveByCycleNumber(country:string, cycleNumber: number): Promise<Question | null> {
     try {
       // Find a question with the specified cycle_number
       return await Question.findOne({
         where: {
           cycle_number: cycleNumber, // Filter by cycle_number
+          country: country
         },
       });
     } catch (error) {

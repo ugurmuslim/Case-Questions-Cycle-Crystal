@@ -37,7 +37,7 @@ export class QuestionService {
                     let nextCycleNumber = parseInt(last_cycle_number) + 1;
                     console.log('Next cycle number:', nextCycleNumber);
 
-                    let question = await this.questionRepository.retrieveByCycleNumber(nextCycleNumber);
+                    let question = await this.questionRepository.retrieveByCycleNumber(country, nextCycleNumber);
 
                     // Reset nextCycleNumber to 1 if no question is found
                     if (!question) {
@@ -72,7 +72,7 @@ export class QuestionService {
 
        const settingsMap=  this.mapSettings(settings)
 
-        const question = await this.questionRepository.retrieveByCycleNumber(settingsMap[country].last_cycle_number)
+        const question = await this.questionRepository.retrieveByCycleNumber(country, settingsMap[country].last_cycle_number)
 
         if(!question) {
             return null
