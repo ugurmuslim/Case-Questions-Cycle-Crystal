@@ -46,22 +46,22 @@ const seedSettings = async () => {
             {
                 country: 'US',
                 setting_type: 'last_publish_date',
-                value: '2021-11-10'
+                value: '2021-14-10'
             },
             {
                 country: 'UK',
                 setting_type: 'last_publish_date',
-                value: '2021-11-10'
+                value: '2021-14-10'
             },
             {
                 country: 'Australia',
                 setting_type: 'last_publish_date',
-                value: '2021-11-10'
+                value: '2021-14-10'
             },
             {
                 country: 'Canada',
                 setting_type: 'last_publish_date',
-                value: '2021-11-10'
+                value: '2021-14-10'
             },
             {
                 country: 'US',
