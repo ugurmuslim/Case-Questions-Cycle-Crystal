@@ -4,17 +4,18 @@ FROM node:18
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and install dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
-RUN npm install -g typescript
+# Install TypeScript and ts-node globally
+RUN npm install -g typescript ts-node
 
-RUN npm i --save-dev @types/node
+# Install type definitions as dev dependencies, excluding @types/sequelize-typescript
+RUN npm install --save-dev @types/node @types/express @types/sequelize @types/cors @types/node-cron @types/faker
 
-# Install ts-node globally
-RUN npm install -g ts-node
 # Copy the rest of the application code
 COPY . .
 
