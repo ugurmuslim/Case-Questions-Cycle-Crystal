@@ -6,13 +6,19 @@ import cron from 'node-cron';
 import {QuestionService} from "./services/question-service";
 import QuestionRepository from "./repositories/question.repository";
 import SettingRepository from "./repositories/setting.repository";
+import {CrystalBallService} from "./services/crystal-ball-service";
+import CrystallBallQuestionRepository from "./repositories/crystall-ball-question.repository";
+import CrystalBallAnswerRepository from "./repositories/crystal-ball-answer.repository";
+import MatchRepository from "./repositories/match.repository";
 
 export default class Server {
   private questionService: QuestionService;
+  private crystalBallService: CrystalBallService;
   constructor(app: Application) {
     this.config(app);
     this.syncDatabase();
     this.questionService = new QuestionService(QuestionRepository, SettingRepository);
+    this.crystalBallService = new CrystalBallService(CrystallBallQuestionRepository, CrystalBallAnswerRepository, MatchRepository);
     new Routes(app);
   }
 
@@ -29,6 +35,11 @@ export default class Server {
     cron.schedule('0 19 * * *', async () => {
       console.log('Running cron job every day at 7 PM');
       await this.questionService.assigner();
+    });
+
+    cron.schedule('0 0 * * *', async () => {
+      console.log('Running cron job every day at 12 PM');
+      await this.crystalBallService.updateDailyQuestions();
     });
   }
 

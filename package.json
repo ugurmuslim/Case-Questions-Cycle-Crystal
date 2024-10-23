@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "node ./build/server.js",
+    "dev": "node build/server.js",
     "start": "tsc && npm run dev"
   },
   "keywords": [
@@ -30,6 +30,7 @@
     "@types/faker": "^6.6.9",
     "@types/node": "^20.4.2",
     "@types/node-cron": "^3.0.11",
+    "@types/sequelize": "^4.28.20",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
@@ -40,7 +41,7 @@
     "faker": "^6.6.6",
     "node-cron": "^3.0.3",
     "pg": "^8.11.1",
-    "sequelize": "^6.32.1",
-    "sequelize-typescript": "^2.1.5"
+    "sequelize": "^6.37.4",
+    "sequelize-typescript": "^2.1.6"
   }
 }

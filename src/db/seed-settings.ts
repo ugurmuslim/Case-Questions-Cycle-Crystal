@@ -1,8 +1,6 @@
 // seedQuestions.ts
 import {Sequelize} from "sequelize-typescript";
 import {config} from "../config/db.config";
-import Question from "../models/question.model";
-import {faker} from '@faker-js/faker';
 import Setting from "../models/setting.model"; // Updated import statement
 
 const sequelize = new Sequelize({

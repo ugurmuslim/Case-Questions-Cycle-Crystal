@@ -2,7 +2,8 @@
 import { Sequelize } from "sequelize-typescript";
 import { config } from "../config/db.config";
 import Question from "../models/question.model";
-import { faker } from '@faker-js/faker'; // Updated import statement
+import { faker } from '@faker-js/faker';
+import {COUNTRIES} from "../utils/constants"; // Updated import statement
 
 const sequelize = new Sequelize({
     database: config.DB,
@@ -38,4 +39,4 @@ const seedQuestions = async (numQuestions: number, countries: Array<string>) => 
     }
 };
 
-seedQuestions(100, ['US', 'UK', 'Canada', 'Australia','Singapore']); // Seed 100 questions for the specified countries
+seedQuestions(100, COUNTRIES.LIST); // Seed 100 questions for the specified countries

@@ -2,6 +2,10 @@ import { Sequelize } from "sequelize-typescript";
 import { config, dialect } from "../config/db.config";
 import Question from "../models/question.model";
 import Setting from "../models/setting.model";
+import CrystalBallQuestion from "../models/crystal-ball-question.model";
+import User from "../models/users.model";
+import Match from "../models/match.model";
+import CrystalBallAnswer from "../models/crystal-ball-answer.model";
 
 class Database {
   public sequelize: Sequelize | undefined;
@@ -23,7 +27,7 @@ class Database {
         acquire: config.pool.acquire,
         idle: config.pool.idle
       },
-      models: [Question, Setting]
+      models: [Question, Setting, CrystalBallQuestion, User, CrystalBallAnswer, Match]
     });
 
     await this.sequelize

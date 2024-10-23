@@ -17,7 +17,7 @@ RUN npm install -g typescript ts-node
 RUN npm install --save-dev @types/node @types/express @types/sequelize @types/cors @types/node-cron @types/faker
 
 # Copy the rest of the application code
-COPY . .
+COPY .. .
 
 # Expose the application port
 EXPOSE 3000
