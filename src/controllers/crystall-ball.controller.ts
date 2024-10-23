@@ -107,8 +107,8 @@ export default class CrystalBallController {
             const matchingUserId = req.body.matchingUserId;
             console.log(matchingUserId)
 
-            const users = await this.crystalBallService.decide(user, matchingUserId, !!decision)
-            res.json({ success: true, message: 'User Created' });
+            await this.crystalBallService.decide(user, matchingUserId, !!decision)
+            res.json({ success: true, message: 'Successfully updated' });
         } catch (err) {
             console.log(err);
             res.status(500).send({

@@ -1,7 +1,7 @@
 import User from "../models/users.model";
 import {Op} from "sequelize";
 import Match from "../models/match.model";
-import {tr} from "@faker-js/faker";
+import {th, tr} from "@faker-js/faker";
 
 export interface IMatchRepository {
   getMatchingPeople(user_id: number, limit: number): Promise<Match[]>;
@@ -19,6 +19,11 @@ class MatchRepository implements IMatchRepository {
     counter_user_match?: boolean;
   }): Promise<void> {
     try {
+      const match = await Match.findOne({ where: searchParams });
+      console.log("match",match)
+      if(!match) {
+        throw new Error("Match not found!");
+      }
       await Match.update(body, { where: searchParams });
     }   catch (error) {
       throw new Error("Failed to update the match!");

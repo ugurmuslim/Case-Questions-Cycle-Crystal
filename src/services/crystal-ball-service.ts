@@ -149,6 +149,6 @@ export class CrystalBallService {
                 counter_user_match: decision
             }
         }
-        const matches = await this.matchRepository.updateMatching(searchParams, body)
+        await this.matchRepository.updateMatching(searchParams, body)
     }
 }
