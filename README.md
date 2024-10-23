@@ -103,4 +103,9 @@ Every request must have token header for user authentication. Depending on the u
 
 Shared example requests with Har file.  
 
-For test purposes first question dates is added to crystalBallQuestions table. 
+For test purposes first question dates is added to crystalBallQuestions table.
+
+You can checkout the flow file here
+
+[Crystal Ball Flow](https://miro.com/welcomeonboard/cEkxOHo1c01EQ3plZFlwQVRJd3dxbnc0QjBLcVZVcmZOWGtzQTdYb0pIR3QwTnpXdjJVOHEwalRXYmhUanVaZnwzNDU4NzY0NTY2OTMzMDE5MDU3fDI=?share_link_id=652079939397
+
