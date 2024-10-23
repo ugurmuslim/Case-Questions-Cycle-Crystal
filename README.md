@@ -87,15 +87,15 @@ GET /api/questions?country=country_name
 - Depending on their answers they match.
 - After match users can see people who they matched with and decide whether it is a yes or no.
 
-### WHAT MORE MUST BE DONE
+### SOME OF THE THONGS THAT CAN BE DONE
 
-. Validations must be added.
-
+- Validations must be added.
 - So many edge cases must be handled.
 - Probably previous question should be taken into consideration.
 - Some constants can be migrated to db
 - Depending on the feature's complexity this can work as a microservice
 - Tests can be added
+- Caching, db indexing, db optimization can be done
 
 Requests can be made to the following endpoints:
 
