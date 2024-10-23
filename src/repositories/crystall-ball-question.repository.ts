@@ -5,7 +5,7 @@ import {Sequelize} from "sequelize-typescript";
 
 export interface ICrystalBallQuestionRepository {
   retrieveAll(searchParams: {country: string, question_date?: Date}): Promise<CrystalBallQuestion[]>;
-  retrieveOne(searchParams: {country: string, question_date?: Date}): Promise<CrystalBallQuestion | null>;
+  retrieveOne(searchParams: {country: string, question_date?: Date, question_id?: number}): Promise<CrystalBallQuestion | null>;
   getQuestionsNotInitialized(country: string): Promise<CrystalBallQuestion[]>;
   getQuestionsNotAnswered(user_id: number, country: string): Promise<CrystalBallQuestion[]>
 }
@@ -27,13 +27,16 @@ class CrystalBallQuestionRepository implements ICrystalBallQuestionRepository {
     }
   }
 
-  async retrieveOne(searchParams: {question_date?: Date, country: string}): Promise<CrystalBallQuestion | null> {
+  async retrieveOne(searchParams: {question_date?: Date, country: string, question_id?: number}): Promise<CrystalBallQuestion | null> {
     try {
       let condition: SearchCondition = {};
 
       if (searchParams?.country) condition.country = searchParams.country;
       if (searchParams?.question_date) condition.question_date = searchParams.question_date;
+      if (searchParams?.question_id) condition.id = searchParams.question_id;
 
+
+      console.log("condition", condition);
       return await CrystalBallQuestion.findOne({ where: condition });
     } catch (error) {
       throw new Error("Failed to retrieve CrystalBallQuestions!");

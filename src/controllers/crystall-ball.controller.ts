@@ -46,12 +46,12 @@ export default class CrystalBallController {
             }
             const token: string = req.headers.token?.toString() || "";
             const user = await this.userService.getUserByToken(token);
-            const answer = await this.crystalBallService.answerQuestions(Number(questionId), answerId, user)
-            res.json({ answer: answer });
+            const users = await this.crystalBallService.answerQuestions(Number(questionId), answerId, user)
+            res.json({ users: users });
         } catch (err) {
             console.log(err);
             res.status(500).send({
-                message: `Error retrieving questions.`
+                message: "There was a problem answering the question."
             });
         }
     }
@@ -108,7 +108,7 @@ export default class CrystalBallController {
             console.log(matchingUserId)
 
             const users = await this.crystalBallService.decide(user, matchingUserId, !!decision)
-            res.json({ users: users });
+            res.json({ success: true, message: 'User Created' });
         } catch (err) {
             console.log(err);
             res.status(500).send({

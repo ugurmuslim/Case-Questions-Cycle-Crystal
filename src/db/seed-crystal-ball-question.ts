@@ -22,18 +22,23 @@ const seedQuestions = async (numQuestions: number, countries: Array<string>) => 
         // Sync the model with the database
         await sequelize.sync({force: true}); // Use with caution: drops the table if it exists
 
+        const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
+        const bulkCreateObject = []
         for (const country of countries) {
+            let index = 0;
             for (const question of crystalBallQuestions) {
-                const questions = Array.from({length: numQuestions}, () => ({
+                index++;
+                bulkCreateObject.push({
                     question: question.question_female,
                     counter_question: question.question_male,
                     country: country,
                     answers: question.answers,
-                }));
-
-                await CrystalBallQuestion.bulkCreate(questions);
+                    question_date: index == 1 ? today : null
+                })
             }
         }
+        await CrystalBallQuestion.bulkCreate(bulkCreateObject);
         console.log(`${numQuestions} questions seeded successfully.`);
     } catch (error) {
         console.error("Error seeding questions:", error);

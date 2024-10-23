@@ -2,7 +2,7 @@
 import {Sequelize} from "sequelize-typescript";
 import {config} from "../config/db.config";
 import {faker} from '@faker-js/faker';
-import {COUNTRIES} from "../utils/constants";
+import {COUNTRIES, GENDERS} from "../utils/constants";
 import User from "../models/users.model";
 import CrystalBallAnswer from "../models/crystal-ball-answer.model";
 import Match from "../models/match.model"; // Updated import statement
@@ -23,6 +23,30 @@ const seedUsers = async (numQuestions: number) => {
 
         // Sync the model with the database
         await sequelize.sync({force: true}); // Use with caution: drops the table if it exists
+
+        const maleTestUser ={
+            email: faker.internet.email(),
+            photo_url: faker.image.avatar(),
+            name: faker.person.firstName(),
+            surname: faker.person.lastName(),
+            token: 'bfhoJvtPZqdbPH1EBEaFhMpp0pDxqQxu',
+            gender: GENDERS.MALE,
+            country: 'Singapore',
+        };
+
+        await User.create(maleTestUser);
+
+        const femaleTestUser = {
+            email: faker.internet.email(),
+            photo_url: faker.image.avatar(),
+            name: faker.person.firstName(),
+            surname: faker.person.lastName(),
+            token: 'WSyFoZ3abZg5s0RHkA1ORWkJzcaNldqX',
+            gender: GENDERS.FEMALE,
+            country: 'Singapore',
+        };
+
+        await User.create(femaleTestUser);
 
         const users = Array.from({length: numQuestions}, () => ({
             email: faker.internet.email(),

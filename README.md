@@ -101,4 +101,6 @@ Requests can be made to the following endpoints:
 
 Every request must have token header for user authentication. Depending on the user's gender responses vary.
 
-Shared example requests with Har file
+Shared example requests with Har file.  
+
+For test purposes first question dates is added to crystalBallQuestions table. 

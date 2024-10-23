@@ -11,17 +11,17 @@ services:
     ports:
       - "5432:5432"
 
-#  node-app:
-#    container_name: node-app
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    volumes:
-#      - ./src:/usr/src/app/src
-#    ports:
-#      - "3000:3000"
-#    depends_on:
-#      - db
-#    restart: always
+  node-app:
+    container_name: node-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/usr/src/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    restart: always
 volumes:
   db-data-stroll:

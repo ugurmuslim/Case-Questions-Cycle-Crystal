@@ -40,9 +40,5 @@ export default class CrystalBallAnswer extends Model {
   })
   user!: User;  // Answer belongs to a User
 
-  @HasMany(() => Match, {
-    foreignKey: 'user_id', // Use user_id to associate matches
-  })
-  matches!: Match[]; // Define the association to Match
 }
 

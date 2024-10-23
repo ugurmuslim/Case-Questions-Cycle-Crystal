@@ -38,7 +38,7 @@ export class CrystalBallService {
         const today = new Date();
         today.setUTCHours(0, 0, 0, 0);
         const searchParams: { country: string, question_date: Date } = {country: country, question_date: today}
-
+        console.log(searchParams)
         const questions = await this.crystalBallQuestionRepository.retrieveOne(searchParams)
         if (questions === null) {
             throw new Error("No questions found!")
@@ -46,18 +46,22 @@ export class CrystalBallService {
         return questions
     }
 
-    async answerQuestions(question_id: number, answer_id: number, user: User): Promise<CrystalBallAnswer> {
-        const answer = await this.crystalBallAnswerRepository.saveAnswer(question_id, answer_id, user.id)
+    async answerQuestions(question_id: number, answer_id: number, user: User): Promise<User[]> {
+        const searchParams: { question_id: number, country: string } = {question_id, country: user.country}
+        const question = await this.crystalBallQuestionRepository.retrieveOne(searchParams)
 
-        if (answer) {
-            this.matchWithPeople(user, question_id);
+        if(question === null) {
+            console.log("No questions found!")
+            throw new Error("No questions found!")
         }
+        await this.crystalBallAnswerRepository.saveAnswer(question_id, answer_id, user.id)
 
-        return answer
+        return this.matchWithPeople(user, question_id);
     }
 
-    async matchWithPeople(user: User, questionId: number): Promise<any> {
+    async matchWithPeople(user: User, questionId: number): Promise<User[]> {
         const matchingPeople = await this.matchingAnswersWithCounterGender(user, questionId);
+
         const users = matchingPeople.map(m => m.user.get({plain: true}));
 
         // Step 2: Prepare matches for saving
@@ -105,7 +109,8 @@ export class CrystalBallService {
     }
 
     async getMatchingAnswersForMale(answer_id: number, question_id: number, user_id: number): Promise<CrystalBallAnswer[]> {
-        return await this.crystalBallAnswerRepository.findMatchingAnswers(user_id, GENDERS.FEMALE)
+        console.log(111111111111111);
+        return await this.crystalBallAnswerRepository.findMatchingAnswersForSpecificQuestion(question_id, answer_id, user_id, GENDERS.FEMALE, 14)
     }
 
     async updateDailyQuestions(): Promise<void> {
