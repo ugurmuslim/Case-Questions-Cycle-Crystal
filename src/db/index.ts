@@ -6,6 +6,7 @@ import CrystalBallQuestion from "../models/crystal-ball-question.model";
 import User from "../models/users.model";
 import Match from "../models/match.model";
 import CrystalBallAnswer from "../models/crystal-ball-answer.model";
+import PossibleMatch from "../models/possible-match.model";
 
 class Database {
   public sequelize: Sequelize | undefined;
@@ -27,7 +28,7 @@ class Database {
         acquire: config.pool.acquire,
         idle: config.pool.idle
       },
-      models: [Question, Setting, CrystalBallQuestion, User, CrystalBallAnswer, Match]
+      models: [Question, Setting, CrystalBallQuestion, User, CrystalBallAnswer, Match, PossibleMatch]
     });
 
     await this.sequelize

@@ -3,7 +3,7 @@ import User from "./users.model";
 import CrystalBallAnswer from "./crystal-ball-answer.model";
 
 @Table({
-    tableName: "match",
+    tableName: "possible_match",
     indexes: [
         {
             unique: true, // Ensure the combination is unique
@@ -11,7 +11,7 @@ import CrystalBallAnswer from "./crystal-ball-answer.model";
         }]
 })
 
-export default class MatchModel extends Model {
+export default class PossibleMatch extends Model {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
@@ -37,25 +37,25 @@ export default class MatchModel extends Model {
     counter_user_id!: number;
 
     @Column({
-        type: DataType.STRING(255),
-        field: "user_match",
-        allowNull: true
-    })
-    user_match!: string;
-
-    @Column({
-        type: DataType.STRING(30),
-        field: "counter_user_match",
-        allowNull: true
-    })
-    counter_user_match!: boolean;
-
-    @Column({
         type: DataType.STRING(100),
         field: "match_date",
         allowNull: true
     })
     match_date?: Date;
+
+    @Column({
+        type: DataType.STRING(100),
+        field: "match_initiator_gender",
+        allowNull: false
+    })
+    match_initiator_gender?: Date;
+
+    @Column({
+        type: DataType.INTEGER,
+        field: "question_id",
+        allowNull: false
+    })
+    question_id?: number;
 
     @BelongsTo(() => User, 'user_id')
     user!: User;

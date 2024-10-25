@@ -5,12 +5,13 @@ import {UserService} from "../services/user-service";
 import UserRepository from "../repositories/user.repository";
 import CrystalBallAnswerRepository from "../repositories/crystal-ball-answer.repository";
 import MatchRepository from "../repositories/match.repository";
+import PossibleMatchRepository from "../repositories/possible-match.repository";
 
 export default class CrystalBallController {
     private crystalBallService: CrystalBallService;
     private userService: UserService;
     constructor() {
-        this.crystalBallService = new CrystalBallService(CrystalBallQuestionRepository, CrystalBallAnswerRepository, MatchRepository);
+        this.crystalBallService = new CrystalBallService(CrystalBallQuestionRepository, CrystalBallAnswerRepository, MatchRepository, PossibleMatchRepository);
         this.userService = new UserService(UserRepository);
     }
     // Arrow function to keep the `this` context

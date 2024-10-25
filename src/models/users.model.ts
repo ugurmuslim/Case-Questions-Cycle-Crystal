@@ -56,6 +56,41 @@ export default class User extends Model {
   })
   photo_url?: string;
 
+  @Column({
+    type: DataType.INTEGER,
+    field: "height",
+    allowNull: true
+  })
+  height?: number;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: "profession",
+    allowNull: true
+  })
+  profession?: string;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: "religion",
+    allowNull: true
+  })
+  religion?: string;
+
+  @Column({
+    type: DataType.STRING(100),
+    field: "stroll_question",
+    allowNull: true
+  })
+  stroll_question?: string;
+
+  @Column({
+    type: DataType.DATE,
+    field: "birth_date",
+    allowNull: true
+  })
+  birth_date?: Date;
+
   @HasMany(() => CrystalBallAnswer, {
     foreignKey: 'user_id',  // Foreign key on CrystalBallAnswer
   })

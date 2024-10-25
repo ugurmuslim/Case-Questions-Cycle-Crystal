@@ -46,4 +46,11 @@ export default class CrystalBallQuestion extends Model {
     allowNull: true
   })
   question_date?: Date;
+
+  @Column({
+    type: DataType.STRING(255),
+    field: "video_link",
+    allowNull: false
+  })
+  video_link!: string;
 }

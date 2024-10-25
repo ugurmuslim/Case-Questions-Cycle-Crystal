@@ -34,7 +34,8 @@ const seedQuestions = async (numQuestions: number, countries: Array<string>) => 
                     counter_question: question.question_male,
                     country: country,
                     answers: question.answers,
-                    question_date: index == 1 ? today : null
+                    question_date: index == 1 ? today : null,
+                    video_link: question.video_link
                 })
             }
         }

@@ -5,20 +5,24 @@ import CrystalBallAnswer from "../models/crystal-ball-answer.model";
 import {ICrystalBallAnswerRepository} from "../repositories/crystal-ball-answer.repository";
 import {IMatchRepository} from "../repositories/match.repository";
 import {COUNTRIES, CRYSTAL_BALL_CONSTANTS, GENDERS} from "../utils/constants";
+import {IPossibleMatchRepository} from "../repositories/possible-match.repository";
 
 export class CrystalBallService {
     private crystalBallQuestionRepository: ICrystalBallQuestionRepository;
     private crystalBallAnswerRepository: ICrystalBallAnswerRepository;
     private matchRepository: IMatchRepository;
+    private possibleMatchRepository: IPossibleMatchRepository;
 
     constructor(
         crystalBallQuestionRepository: ICrystalBallQuestionRepository,
         crystalBallAnswerRepository: ICrystalBallAnswerRepository,
-        matchRepository: IMatchRepository
+        matchRepository: IMatchRepository,
+        possibleMatchRepository: IPossibleMatchRepository
     ) {
         this.crystalBallQuestionRepository = crystalBallQuestionRepository;
         this.crystalBallAnswerRepository = crystalBallAnswerRepository;
         this.matchRepository = matchRepository;
+        this.possibleMatchRepository = possibleMatchRepository;
     }
 
     async getQuestions(user: User): Promise<CrystalBallQuestion | CrystalBallQuestion[]> {
@@ -65,17 +69,21 @@ export class CrystalBallService {
         const users = matchingPeople.map(m => m.user.get({plain: true}));
 
         // Step 2: Prepare matches for saving
-        const matchData = users.map(matchingUser => ({
+        const possibleMatchData = users.map(matchingUser => ({
             user_id: user.gender == GENDERS.MALE ? matchingUser.id : user.id,
             counter_user_id: user.gender == GENDERS.MALE ? user.id : matchingUser.id,
             possible_match: true,
-            user_match: null,
-            counter_user_match: null,
             match_date: new Date()
         }));
 
+        const matchData = users.map(matchingUser => ({
+            user_id: user.gender == GENDERS.MALE ? matchingUser.id : user.id,
+            counter_user_id: user.gender == GENDERS.MALE ? user.id : matchingUser.id,
+        }));
+
         try {
-            await this.matchRepository.bulkMatchingCreation(matchData);
+            await this.possibleMatchRepository.bulkMatchingCreation(possibleMatchData);
+            if(user.gender == GENDERS.FEMALE) await this.matchRepository.bulkMatchingCreation(matchData);
         } catch (error) {
             throw new Error("Failed to create matches: " + error);
         }
@@ -109,7 +117,6 @@ export class CrystalBallService {
     }
 
     async getMatchingAnswersForMale(answer_id: number, question_id: number, user_id: number): Promise<CrystalBallAnswer[]> {
-        console.log(111111111111111);
         return await this.crystalBallAnswerRepository.findMatchingAnswersForSpecificQuestion(question_id, answer_id, user_id, GENDERS.FEMALE, 14)
     }
 
