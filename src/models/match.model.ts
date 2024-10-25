@@ -57,6 +57,13 @@ export default class MatchModel extends Model {
     })
     match_date?: Date;
 
+    @Column({
+        type: DataType.INTEGER,
+        field: "score",
+        allowNull: true
+    })
+    score?: number;
+
     @BelongsTo(() => User, 'user_id')
     user!: User;
 
