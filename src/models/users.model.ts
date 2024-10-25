@@ -91,6 +91,20 @@ export default class User extends Model {
   })
   birth_date?: Date;
 
+  @Column({
+    type: DataType.INTEGER,
+    field: "match_count",
+    allowNull: true
+  })
+  match_count?: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    field: "dismatch_count",
+    allowNull: true
+  })
+  dismatch_count?: number;
+
   @HasMany(() => CrystalBallAnswer, {
     foreignKey: 'user_id',  // Foreign key on CrystalBallAnswer
   })

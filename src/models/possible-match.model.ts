@@ -48,7 +48,7 @@ export default class PossibleMatch extends Model {
         field: "match_initiator_gender",
         allowNull: false
     })
-    match_initiator_gender?: Date;
+    match_initiator_gender?: string;
 
     @Column({
         type: DataType.INTEGER,

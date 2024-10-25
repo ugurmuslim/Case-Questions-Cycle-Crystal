@@ -73,7 +73,8 @@ export class CrystalBallService {
             user_id: user.gender == GENDERS.MALE ? matchingUser.id : user.id,
             counter_user_id: user.gender == GENDERS.MALE ? user.id : matchingUser.id,
             possible_match: true,
-            match_date: new Date()
+            match_date: new Date(),
+            match_initiator_gender: user.gender
         }));
 
         const matchData = users.map(matchingUser => ({
